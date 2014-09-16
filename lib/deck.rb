@@ -2,9 +2,9 @@ class Card
 attr_accessor :suit
 attr_accessor :value
 
-def initialize(s, v)
-@suit = s
-@value = v
+def initialize(suits, values)
+@suit = suits
+@value = values
 end
 
 def what_card
@@ -19,9 +19,9 @@ def initialize
 @card = []
 suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
 values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
-suits.each {|s|
-  values.each {|v|
-    @card.push(Card.new(s, v))
+suits.each {|suits|
+  values.each {|values|
+    @card.push(Card.new(suits, values))
   }
 }
 end
