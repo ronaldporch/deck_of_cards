@@ -1,10 +1,11 @@
+# Class Card
 class Card
   attr_accessor :suit
   attr_accessor :value
 
-  def initialize(suits, values)
-    @suit = suits
-    @value = values
+  def initialize(s, v)
+    @suit = s
+    @value = v
   end
 
   def what_card
@@ -12,18 +13,19 @@ class Card
   end
 end
 
-class Deck < Card
+# Class Deck
+class Deck
   attr_accessor :card
 
   def initialize
     @card = []
-    suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
-    values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
-    suits.each {|suits|
-      values.each {|values|
-        @card.push(Card.new(suits, values))
-      }
-    }
+    suits = %w(Spades Hearts Clubs Diamonds)
+    values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
+    suits.each do |s|
+      values.each do |v|
+        @card.push(Card.new(s, v))
+      end
+    end
   end
 
   def size
@@ -33,12 +35,12 @@ class Deck < Card
   def play_hand
     hand = []
 
-    (1..5).each {|card|
+    (1..5).each do
       passed_card = @card[Random.new.rand(@card.length)]
       hand.push(passed_card)
       puts "I have pulled the #{passed_card.value} of #{passed_card.suit}."
       @card.delete(passed_card)
-    }
+    end
   end
 end
 
